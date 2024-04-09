@@ -1,6 +1,8 @@
 package br.com.dio.picpayclone.infrastructure.api.exceptionhandler;
 
-import br.com.dio.picpayclone.infrastructure.api.dtos.ErrorDTO;
+import br.com.dio.picpayclone.domain.exceptions.BusinessException;
+import br.com.dio.picpayclone.domain.exceptions.NotFoundException;
+import br.com.dio.picpayclone.infrastructure.api.responses.ErrorResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -21,14 +23,26 @@ public class RestControllerAdviceExceptionHandler {
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    List<ErrorDTO> handle(MethodArgumentNotValidException exception) {
-        List<ErrorDTO> errorsDTOS = new ArrayList<>();
+    public List<ErrorResponse> handleMethodArgumentNotValid(MethodArgumentNotValidException exception) {
+        List<ErrorResponse> errors = new ArrayList<>();
         var fieldErrors = exception.getBindingResult().getFieldErrors();
         fieldErrors.forEach(error -> {
             var message = messageSource.getMessage(error, LocaleContextHolder.getLocale());
-            ErrorDTO errorDTO = new ErrorDTO(error.getField(), message);
-            errorsDTOS.add(errorDTO);
+            ErrorResponse errorDTO = new ErrorResponse(error.getField(), message);
+            errors.add(errorDTO);
         });
-        return errorsDTOS;
+        return errors;
+    }
+
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(BusinessException.class)
+    public ErrorResponse handleBusiness(BusinessException exception) {
+        return new ErrorResponse(null, exception.getMessage());
+    }
+
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    public ErrorResponse handleNotFound(NotFoundException exception) {
+        return new ErrorResponse(null, exception.getMessage());
     }
 }

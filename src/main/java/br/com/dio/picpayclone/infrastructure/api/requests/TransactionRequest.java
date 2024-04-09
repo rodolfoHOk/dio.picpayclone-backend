@@ -1,4 +1,4 @@
-package br.com.dio.picpayclone.infrastructure.api.dtos;
+package br.com.dio.picpayclone.infrastructure.api.requests;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotBlank;
@@ -8,16 +8,16 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public record TransactionDTO(
+public record TransactionRequest(
 
     @NotBlank
     String code,
 
     @NotNull
-    UserDTO origin,
+    UserRequest origin,
 
     @NotNull
-    UserDTO destination,
+    UserRequest destination,
 
     @NotNull
     OffsetDateTime dateTime,
@@ -25,7 +25,7 @@ public record TransactionDTO(
     @NotNull
     BigDecimal amount,
 
-    CreditCardDTO creditCard,
+    CreditCardRequest creditCard,
 
     Boolean isCreditCard
 ) {

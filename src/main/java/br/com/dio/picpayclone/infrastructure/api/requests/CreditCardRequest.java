@@ -1,4 +1,4 @@
-package br.com.dio.picpayclone.infrastructure.api.dtos;
+package br.com.dio.picpayclone.infrastructure.api.requests;
 
 
 import br.com.dio.picpayclone.domain.enums.CardBanner;
@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public record CreditCardDTO(
+public record CreditCardRequest(
 
     @NotBlank
     CardBanner banner,
@@ -26,7 +26,7 @@ public record CreditCardDTO(
     String tokenNumber,
 
     @NotNull
-    UserDTO user,
+    UserRequest user,
 
     Boolean isSaved
 ) {

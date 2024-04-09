@@ -1,11 +1,11 @@
-package br.com.dio.picpayclone.infrastructure.adapters;
+package br.com.dio.picpayclone.infrastructure.persistence.adapters;
 
 import br.com.dio.picpayclone.domain.models.Transaction;
 import br.com.dio.picpayclone.infrastructure.persistence.entities.TransactionEntity;
 
 public class TransactionEntityMapper {
 
-    private static TransactionEntity toEntity(Transaction transactionDomainModel) {
+    public static TransactionEntity toEntity(Transaction transactionDomainModel) {
         return TransactionEntity.builder()
                 .id(transactionDomainModel.getId())
                 .code(transactionDomainModel.getCode())
@@ -16,7 +16,7 @@ public class TransactionEntityMapper {
                 .build();
     }
 
-    private static Transaction toDomainModel(TransactionEntity transactionEntity) {
+    public static Transaction toDomainModel(TransactionEntity transactionEntity) {
         return Transaction.builder()
                 .id(transactionEntity.id())
                 .code(transactionEntity.code())
