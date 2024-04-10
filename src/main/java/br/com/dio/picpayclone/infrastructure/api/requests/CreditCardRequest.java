@@ -3,6 +3,7 @@ package br.com.dio.picpayclone.infrastructure.api.requests;
 
 import br.com.dio.picpayclone.domain.enums.CardBanner;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -10,7 +11,7 @@ import jakarta.validation.constraints.NotNull;
 public record CreditCardRequest(
 
     @NotBlank
-    CardBanner banner,
+    String banner,
 
     String number,
 
@@ -26,6 +27,7 @@ public record CreditCardRequest(
     String tokenNumber,
 
     @NotNull
+    @Valid
     UserRequest user,
 
     Boolean isSaved
