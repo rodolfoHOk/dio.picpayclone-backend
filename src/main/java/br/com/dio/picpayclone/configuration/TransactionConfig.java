@@ -3,10 +3,12 @@ package br.com.dio.picpayclone.configuration;
 import br.com.dio.picpayclone.application.converter.CreditCardConverter;
 import br.com.dio.picpayclone.application.converter.TransactionConverter;
 import br.com.dio.picpayclone.application.converter.UserConverter;
+import br.com.dio.picpayclone.application.ports.inbound.IListTransactionUseCase;
 import br.com.dio.picpayclone.application.ports.inbound.IProcessTransactionUseCase;
 import br.com.dio.picpayclone.application.ports.outbound.ICreditCardGateway;
 import br.com.dio.picpayclone.application.ports.outbound.ITransactionGateway;
 import br.com.dio.picpayclone.application.ports.outbound.IUserGateway;
+import br.com.dio.picpayclone.application.usecases.ListTransactionUseCase;
 import br.com.dio.picpayclone.application.usecases.ProcessTransactionUseCase;
 import br.com.dio.picpayclone.domain.services.ICreditCardService;
 import br.com.dio.picpayclone.domain.services.IUserService;
@@ -49,8 +51,8 @@ public class TransactionConfig {
     }
 
     @Bean
-    public CreditCardConverter creditCardConverter(ModelMapper modelMapper, UserRepository userRepository) {
-        return new CreditCardConverter(modelMapper, userService(userRepository));
+    public CreditCardConverter creditCardConverter(ModelMapper modelMapper, IUserService userService) {
+        return new CreditCardConverter(modelMapper, userService);
     }
 
     @Bean
@@ -59,8 +61,8 @@ public class TransactionConfig {
     }
 
     @Bean
-    public TransactionConverter transactionConverter(ModelMapper modelMapper, UserRepository userRepository) {
-        return new TransactionConverter(modelMapper, userService(userRepository));
+    public TransactionConverter transactionConverter(ModelMapper modelMapper, IUserService userService) {
+        return new TransactionConverter(modelMapper, userService);
     }
 
     @Bean ICreditCardGateway creditCardGateway(CreditCardRepository creditCardRepository) {
@@ -79,27 +81,33 @@ public class TransactionConfig {
 
     @Bean
     public ICreditCardService creditCardService(
-            ModelMapper modelMapper,
-            CreditCardRepository creditCardRepository,
-            UserRepository userRepository) {
-        return new CreditCardService(creditCardConverter(modelMapper, userRepository), creditCardGateway(creditCardRepository));
+            CreditCardConverter creditCardConverter,
+            ICreditCardGateway creditCardGateway) {
+        return new CreditCardService(creditCardConverter, creditCardGateway);
     }
 
     @Bean
-    public IUserService userService(UserRepository userRepository) {
-        return new UserService(userGateway(userRepository));
+    public IUserService userService(IUserGateway userGateway) {
+        return new UserService(userGateway);
     }
 
     @Bean
     public IProcessTransactionUseCase processTransactionUseCase(
-            ModelMapper modelMapper,
-            UserRepository userRepository,
-            TransactionRepository transactionRepository,
-            CreditCardRepository creditCardRepository) {
+            TransactionConverter transactionConverter,
+            IUserService userService,
+            ICreditCardService creditCardService,
+            ITransactionGateway transactionGateway) {
         return new ProcessTransactionUseCase(
-                transactionConverter(modelMapper, userRepository),
-                userService(userRepository),
-                creditCardService(modelMapper, creditCardRepository, userRepository),
-                transactionGateway(transactionRepository));
+                transactionConverter,
+                userService,
+                creditCardService,
+                transactionGateway);
+    }
+
+    @Bean
+    public IListTransactionUseCase listTransactionUseCase(
+            ITransactionGateway transactionGateway,
+            TransactionConverter transactionConverter) {
+        return new ListTransactionUseCase(transactionGateway, transactionConverter);
     }
 }

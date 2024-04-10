@@ -1,4 +1,4 @@
-package br.com.dio.picpayclone.infrastructure.persistence.adapters;
+package br.com.dio.picpayclone.infrastructure.persistence.adapters.mapper;
 
 import br.com.dio.picpayclone.domain.models.CreditCard;
 import br.com.dio.picpayclone.domain.models.User;
