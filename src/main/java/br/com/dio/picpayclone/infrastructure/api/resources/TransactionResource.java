@@ -45,7 +45,7 @@ public class TransactionResource extends BaseResource<TransactionDTO> {
     }
 
     @GetMapping
-    public ResponseEntity<Page<TransactionDTO>> list(
+    public ResponseEntity<Page<TransactionDTO>> listByLogin(
             @PageableDefault(page = 0, size = 20) Pageable pageable,
             @RequestParam String login) {
         var pagedTransactions = listTransactionUseCase.execute(pageable, login);

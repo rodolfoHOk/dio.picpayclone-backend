@@ -38,5 +38,7 @@ public class User {
 
     private List<CreditCard> creditCards;
 
+    private List<User> contacts;
+
     private Boolean active;
 }

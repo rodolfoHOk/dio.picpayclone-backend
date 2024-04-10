@@ -7,6 +7,7 @@ import br.com.dio.picpayclone.infrastructure.persistence.adapters.mapper.UserEnt
 import br.com.dio.picpayclone.infrastructure.persistence.repositories.UserRepository;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class UserGateway implements IUserGateway {
 
@@ -31,5 +32,11 @@ public class UserGateway implements IUserGateway {
     @Override
     public void updateDecrementBalance(String login, BigDecimal amount) {
         userRepository.updateDecrementBalance(login, amount);
+    }
+
+    @Override
+    public List<User> getContactsByUserLogin(String login) {
+        var user = this.findByLogin(login);
+        return user.getContacts();
     }
 }
