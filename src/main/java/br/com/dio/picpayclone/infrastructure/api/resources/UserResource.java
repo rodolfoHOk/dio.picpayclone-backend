@@ -1,6 +1,8 @@
 package br.com.dio.picpayclone.infrastructure.api.resources;
 
+import br.com.dio.picpayclone.application.dtos.BalanceDTO;
 import br.com.dio.picpayclone.application.dtos.UserDTO;
+import br.com.dio.picpayclone.application.ports.inbound.IGetUserBalanceByLoginUseCase;
 import br.com.dio.picpayclone.application.ports.inbound.IGetUserByLoginUseCase;
 import br.com.dio.picpayclone.application.ports.inbound.IListUserContactsByLoginUseCase;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +20,14 @@ public class UserResource extends BaseResource<UserDTO> {
 
     private final IGetUserByLoginUseCase getUserByLoginUseCase;
     private final IListUserContactsByLoginUseCase listUsersByLoginUseCase;
+    private final IGetUserBalanceByLoginUseCase getUserBalanceByLoginUseCase;
 
-    public UserResource(IGetUserByLoginUseCase getUserByLoginUseCase, IListUserContactsByLoginUseCase listUsersByLoginUseCase) {
+    public UserResource(IGetUserByLoginUseCase getUserByLoginUseCase,
+                        IListUserContactsByLoginUseCase listUsersByLoginUseCase,
+                        IGetUserBalanceByLoginUseCase getUserBalanceByLoginUseCase) {
         this.getUserByLoginUseCase = getUserByLoginUseCase;
         this.listUsersByLoginUseCase = listUsersByLoginUseCase;
+        this.getUserBalanceByLoginUseCase = getUserBalanceByLoginUseCase;
     }
 
     @GetMapping("/{login}")
@@ -34,5 +40,11 @@ public class UserResource extends BaseResource<UserDTO> {
     public ResponseEntity<List<UserDTO>> listByLogin(@RequestParam String login) {
         List<UserDTO> users = listUsersByLoginUseCase.execute(login);
         return itemsListResponse(users);
+    }
+
+    @GetMapping("/{login}/balance")
+    public ResponseEntity<BalanceDTO> getBalanceByLogin(@PathVariable String login) {
+        BalanceDTO balance = getUserBalanceByLoginUseCase.execute(login);
+        return ResponseEntity.ok(balance);
     }
 }

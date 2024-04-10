@@ -5,6 +5,7 @@
 - Java
 - Spring Framework (Spring Boot)
 - PostgreSQL
+- Clean Architecture (Hexagonal Architecture)
 
 ### Bibliotecas
 
