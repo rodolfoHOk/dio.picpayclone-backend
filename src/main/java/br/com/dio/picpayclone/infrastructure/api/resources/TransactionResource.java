@@ -5,6 +5,7 @@ import br.com.dio.picpayclone.application.ports.inbound.IListTransactionUseCase;
 import br.com.dio.picpayclone.application.ports.inbound.IProcessTransactionUseCase;
 import br.com.dio.picpayclone.infrastructure.api.mappers.TransactionRequestMapper;
 import br.com.dio.picpayclone.infrastructure.api.requests.TransactionRequest;
+import br.com.dio.picpayclone.infrastructure.api.resources.openapi.ITransactionResource;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,7 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/transactions")
-public class TransactionResource extends BaseResource<TransactionDTO> {
+public class TransactionResource extends BaseResource<TransactionDTO> implements ITransactionResource {
 
     private final TransactionRequestMapper transactionRequestMapper;
     private final IProcessTransactionUseCase processTransactionUseCase;
@@ -35,6 +36,7 @@ public class TransactionResource extends BaseResource<TransactionDTO> {
         this.listTransactionUseCase = listTransactionUseCase;
     }
 
+    @Override
     @PostMapping
     public ResponseEntity<TransactionDTO> save(
             @RequestBody @Valid TransactionRequest request,
@@ -44,6 +46,7 @@ public class TransactionResource extends BaseResource<TransactionDTO> {
         return createdItemResponseWithURI(transactionDTO, uriComponentsBuilder, path, transactionDTO.code());
     }
 
+    @Override
     @GetMapping
     public ResponseEntity<Page<TransactionDTO>> listByLogin(
             @PageableDefault(page = 0, size = 20) Pageable pageable,

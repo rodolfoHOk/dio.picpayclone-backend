@@ -5,6 +5,7 @@ import br.com.dio.picpayclone.application.dtos.UserDTO;
 import br.com.dio.picpayclone.application.ports.inbound.IGetUserBalanceByLoginUseCase;
 import br.com.dio.picpayclone.application.ports.inbound.IGetUserByLoginUseCase;
 import br.com.dio.picpayclone.application.ports.inbound.IListUserContactsByLoginUseCase;
+import br.com.dio.picpayclone.infrastructure.api.resources.openapi.IUserResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
-public class UserResource extends BaseResource<UserDTO> {
+public class UserResource extends BaseResource<UserDTO> implements IUserResource {
 
     private final IGetUserByLoginUseCase getUserByLoginUseCase;
     private final IListUserContactsByLoginUseCase listUsersByLoginUseCase;
@@ -30,18 +31,21 @@ public class UserResource extends BaseResource<UserDTO> {
         this.getUserBalanceByLoginUseCase = getUserBalanceByLoginUseCase;
     }
 
+    @Override
     @GetMapping("/{login}")
     public ResponseEntity<UserDTO> getByLogin(@PathVariable String login) {
         UserDTO user = getUserByLoginUseCase.execute(login);
         return successResponseWithItem(user);
     }
 
+    @Override
     @GetMapping("/contacts")
-    public ResponseEntity<List<UserDTO>> listByLogin(@RequestParam String login) {
+    public ResponseEntity<List<UserDTO>> listContactsByLogin(@RequestParam String login) {
         List<UserDTO> users = listUsersByLoginUseCase.execute(login);
         return itemsListResponse(users);
     }
 
+    @Override
     @GetMapping("/{login}/balance")
     public ResponseEntity<BalanceDTO> getBalanceByLogin(@PathVariable String login) {
         BalanceDTO balance = getUserBalanceByLoginUseCase.execute(login);
