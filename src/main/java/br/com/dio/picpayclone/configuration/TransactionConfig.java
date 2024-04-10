@@ -14,8 +14,6 @@ import br.com.dio.picpayclone.domain.services.ICreditCardService;
 import br.com.dio.picpayclone.domain.services.IUserService;
 import br.com.dio.picpayclone.domain.services.impl.CreditCardService;
 import br.com.dio.picpayclone.domain.services.impl.UserService;
-import br.com.dio.picpayclone.infrastructure.api.mappers.CreditCardRequestMapper;
-import br.com.dio.picpayclone.infrastructure.api.mappers.UserRequestMapper;
 import br.com.dio.picpayclone.infrastructure.persistence.adapters.CreditCardGateway;
 import br.com.dio.picpayclone.infrastructure.persistence.adapters.TransactionGateway;
 import br.com.dio.picpayclone.infrastructure.persistence.adapters.UserGateway;
@@ -33,16 +31,6 @@ public class TransactionConfig {
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
-    }
-
-    @Bean
-    public CreditCardRequestMapper creditCardRequestMapper(ModelMapper modelMapper) {
-        return new CreditCardRequestMapper(modelMapper);
-    }
-
-    @Bean
-    public UserRequestMapper userRequestMapper(ModelMapper modelMapper) {
-        return new UserRequestMapper(modelMapper);
     }
 
     @Bean
