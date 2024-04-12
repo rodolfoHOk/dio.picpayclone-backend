@@ -1,5 +1,6 @@
 package br.com.dio.picpayclone.application.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class UserDTO {
         String login;
+        @JsonIgnore
         String password;
         String email;
         String completeName;
