@@ -20,12 +20,12 @@ public class TransactionEntityMapper {
 
     public static Transaction toDomainModel(TransactionEntity transactionEntity) {
         return Transaction.builder()
-                .id(transactionEntity.id())
-                .code(transactionEntity.code())
-                .origin(UserEntityMapper.toDomainModel(transactionEntity.origin()))
-                .destination(UserEntityMapper.toDomainModel(transactionEntity.destination()))
-                .dateTime(transactionEntity.dateTime())
-                .amount(transactionEntity.amount())
+                .id(transactionEntity.getId())
+                .code(transactionEntity.getCode())
+                .origin(UserEntityMapper.toDomainModel(transactionEntity.getOrigin()))
+                .destination(UserEntityMapper.toDomainModel(transactionEntity.getDestination()))
+                .dateTime(transactionEntity.getDateTime())
+                .amount(transactionEntity.getAmount())
                 .build();
     }
 

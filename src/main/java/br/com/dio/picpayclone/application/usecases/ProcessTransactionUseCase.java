@@ -29,8 +29,8 @@ public class ProcessTransactionUseCase implements IProcessTransactionUseCase {
     @Override
     public TransactionDTO execute(TransactionDTO transactionDTO) {
         var savedTransaction = save(transactionDTO);
-        creditCardService.save(transactionDTO.creditCard());
-        userService.updateBalance(savedTransaction, transactionDTO.isCreditCard());
+        creditCardService.save(transactionDTO.getCreditCard());
+        userService.updateBalance(savedTransaction, transactionDTO.getIsCreditCard());
         return transactionConverter.entityToDtoConverter(savedTransaction);
     }
 

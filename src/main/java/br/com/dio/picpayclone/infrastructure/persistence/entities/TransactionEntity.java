@@ -10,37 +10,43 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "transactions")
-public record TransactionEntity(
+public class TransactionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    UUID id,
+    UUID id;
 
     @Column(name = "tr_code", nullable = false)
-    String code,
+    String code;
 
     @ManyToOne(cascade = { CascadeType.MERGE }, fetch = FetchType.EAGER)
     @JoinColumn(name = "tr_origin_user", nullable = false)
-    UserEntity origin,
+    UserEntity origin;
 
     @ManyToOne(cascade = { CascadeType.MERGE }, fetch = FetchType.EAGER)
     @JoinColumn(name = "tr_destination_user", nullable = false)
-    UserEntity destination,
+    UserEntity destination;
 
     @Column(name = "tr_date_time", nullable = false)
-    OffsetDateTime dateTime,
+    OffsetDateTime dateTime;
 
     @Column(name = "tr_amount", nullable = false)
-    BigDecimal amount
-){
-
+    BigDecimal amount;
 }

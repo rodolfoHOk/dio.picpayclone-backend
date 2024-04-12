@@ -24,11 +24,11 @@ public class TransactionConverter extends BaseConverter<Transaction, Transaction
     @Override
     public Transaction dtoToEntityConverter(TransactionDTO dto) {
         return Transaction.builder()
-                .code(dto.code())
-                .dateTime(dto.dateTime())
-                .amount(dto.amount())
-                .destination(userService.findByLogin(dto.destination().login()))
-                .origin(userService.findByLogin(dto.origin().login()))
+                .code(dto.getCode())
+                .dateTime(dto.getDateTime())
+                .amount(dto.getAmount())
+                .destination(userService.findByLogin(dto.getDestination().getLogin()))
+                .origin(userService.findByLogin(dto.getOrigin().getLogin()))
                 .build();
     }
 

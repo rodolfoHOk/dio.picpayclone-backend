@@ -24,10 +24,10 @@ public class CreditCardConverter extends BaseConverter<CreditCard, CreditCardDTO
     @Override
     public CreditCard dtoToEntityConverter(CreditCardDTO dto) {
         return CreditCard.builder()
-                .banner(dto.banner())
-                .number(CreditCardUtils.mask(dto.number()))
-                .tokenNumber(dto.tokenNumber())
-                .user(userService.findByLogin(dto.user().login()))
+                .banner(dto.getBanner())
+                .number(CreditCardUtils.mask(dto.getNumber()))
+                .tokenNumber(dto.getTokenNumber())
+                .user(userService.findByLogin(dto.getUser().getLogin()))
                 .build();
     }
 }

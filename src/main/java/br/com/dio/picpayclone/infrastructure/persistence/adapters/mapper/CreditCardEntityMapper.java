@@ -19,11 +19,11 @@ public class CreditCardEntityMapper {
 
     public static CreditCard toDomainModel(CreditCardEntity creditCardEntity) {
         return CreditCard.builder()
-                .id(creditCardEntity.id())
-                .number(creditCardEntity.number())
-                .banner(creditCardEntity.banner())
-                .tokenNumber(creditCardEntity.tokenNumber())
-                .user(User.builder().id(creditCardEntity.user().id()).build())
+                .id(creditCardEntity.getId())
+                .number(creditCardEntity.getNumber())
+                .banner(creditCardEntity.getBanner())
+                .tokenNumber(creditCardEntity.getTokenNumber())
+                .user(User.builder().id(creditCardEntity.getUser().getId()).build())
                 .build();
     }
 }

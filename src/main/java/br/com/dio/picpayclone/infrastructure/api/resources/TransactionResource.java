@@ -43,7 +43,7 @@ public class TransactionResource extends BaseResource<TransactionDTO> implements
             UriComponentsBuilder uriComponentsBuilder) {
         TransactionDTO transactionDTO = processTransactionUseCase.execute(transactionRequestMapper.toDto(request));
         String path = "/transactions/{code}";
-        return createdItemResponseWithURI(transactionDTO, uriComponentsBuilder, path, transactionDTO.code());
+        return createdItemResponseWithURI(transactionDTO, uriComponentsBuilder, path, transactionDTO.getCode());
     }
 
     @Override

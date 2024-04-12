@@ -1,10 +1,17 @@
 package br.com.dio.picpayclone.application.dtos;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
-public record BalanceDTO(
-    String login,
-    BigDecimal balance
-) {
-
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class BalanceDTO {
+    String login;
+    BigDecimal balance;
 }

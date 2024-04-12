@@ -30,22 +30,22 @@ public class UserEntityMapper {
     }
 
     public static User toDomainModel(UserEntity userEntity) {
-        var creditCards = userEntity.creditCards() != null ? userEntity.creditCards().stream()
+        var creditCards = userEntity.getCreditCards() != null ? userEntity.getCreditCards().stream()
                 .map(CreditCardEntityMapper::toDomainModel)
                 .toList() : new ArrayList<CreditCard>();
 
         return User.builder()
-                .id(userEntity.id())
-                .login(userEntity.login())
-                .password(userEntity.password())
-                .email(userEntity.email())
-                .completeName(userEntity.completeName())
-                .cpf(userEntity.cpf())
-                .birthday(userEntity.birthday())
-                .phoneNumber(userEntity.phoneNumber())
-                .balance(userEntity.balance())
+                .id(userEntity.getId())
+                .login(userEntity.getLogin())
+                .password(userEntity.getPassword())
+                .email(userEntity.getEmail())
+                .completeName(userEntity.getCompleteName())
+                .cpf(userEntity.getCpf())
+                .birthday(userEntity.getBirthday())
+                .phoneNumber(userEntity.getPhoneNumber())
+                .balance(userEntity.getBalance())
                 .creditCards(creditCards)
-                .active(userEntity.active())
+                .active(userEntity.getActive())
                 .build();
     }
 }

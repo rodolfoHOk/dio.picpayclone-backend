@@ -36,7 +36,9 @@ public class UserGateway implements IUserGateway {
 
     @Override
     public List<User> getContactsByUserLogin(String login) {
-        var user = this.findByLogin(login);
-        return user.getContacts();
+        var userEntity = userRepository.findByLogin(login)
+                .orElseThrow(() -> new NotFoundException("Usuário não encontrado com o login informado"));
+        var contacts = userEntity.getContacts();
+        return contacts.stream().map(UserEntityMapper::toDomainModel).toList();
     }
 }

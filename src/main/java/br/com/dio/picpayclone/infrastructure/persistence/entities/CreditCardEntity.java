@@ -11,31 +11,36 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.UUID;
 
 @Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "credit_cards")
-public record CreditCardEntity(
+public class CreditCardEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    UUID id,
+    UUID id;
 
     @Column(name = "cc_number", nullable = false)
-    String number,
+    String number;
 
     @Column(name = "cc_banner", nullable = false)
-    CardBanner banner,
-
+    CardBanner banner;
     @Column(name = "cc_token")
-    String tokenNumber,
+    String tokenNumber;
 
-    @ManyToOne(cascade = { CascadeType.MERGE })
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "cc_user_id", nullable = false)
-    UserEntity user
-){
-
+    UserEntity user;
 }
