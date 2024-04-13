@@ -5,35 +5,41 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public record TransactionRequest(
+public class TransactionRequest {
 
     @NotBlank
-    String code,
+    String code;
 
     @NotNull
     @Valid
-    UserRequest origin,
+    UserRequest origin;
 
     @NotNull
     @Valid
-    UserRequest destination,
+    UserRequest destination;
 
     @NotNull
-    OffsetDateTime dateTime,
+    OffsetDateTime dateTime;
 
     @NotNull
     @Positive
-    BigDecimal amount,
+    BigDecimal amount;
 
     @Valid
-    CreditCardRequest creditCard,
+    CreditCardRequest creditCard;
 
-    Boolean isCreditCard
-) {
-
+    Boolean isCreditCard;
 }
