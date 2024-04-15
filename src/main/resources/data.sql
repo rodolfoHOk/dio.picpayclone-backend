@@ -7,4 +7,3 @@ INSERT INTO users_contacts (user_id, contact_id) VALUES ('f99b526a-0bfe-45ff-9ad
 INSERT INTO users_contacts (user_id, contact_id) VALUES ('f99b526a-0bfe-45ff-9ada-aa14a6e1729e', '420f19ad-9b50-438e-8ac1-1a6a6b2e4d1c');
 INSERT INTO users_contacts (user_id, contact_id) VALUES ('f99b526a-0bfe-45ff-9ada-aa14a6e1729e', '1d6a108d-3ce8-489b-9dda-4643d3ee848d');
 INSERT INTO users_contacts (user_id, contact_id) VALUES ('60e9f176-07db-4b26-8d45-8a976b159fc4', 'f99b526a-0bfe-45ff-9ada-aa14a6e1729e');
-

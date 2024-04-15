@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16.2-alpine3.19
+    container_name: db-picpay-clone
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=picpay
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'picpay-db:/var/lib/postgresql/data'
+
+volumes:
+  picpay-db:
