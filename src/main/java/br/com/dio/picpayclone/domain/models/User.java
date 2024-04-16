@@ -36,8 +36,6 @@ public class User {
 
     private BigDecimal balance;
 
-    private List<CreditCard> creditCards;
-
     private List<User> contacts;
 
     private Boolean active;

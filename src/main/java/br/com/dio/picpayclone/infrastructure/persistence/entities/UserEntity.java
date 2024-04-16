@@ -61,9 +61,6 @@ public class UserEntity{
     @Column(name = "usr_balance", nullable = false)
     BigDecimal balance;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.MERGE, orphanRemoval = true)
-    List<CreditCardEntity> creditCards;
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "users_contacts",
             joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "contact_id") })
