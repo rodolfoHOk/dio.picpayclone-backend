@@ -6,14 +6,17 @@
 - Spring Framework (Spring Boot)
 - PostgreSQL
 - Clean Architecture (Hexagonal Architecture)
+- Authentication with JWT
 
 ### Bibliotecas
 
 - Spring WEB
 - Spring Data JPA
+- Spring Security
 - Spring DevTools
 - Validation (Jakarta)
 - PostgreSQL Driver
+- JJWT API
 - Lombok
 - ModelMapper
 

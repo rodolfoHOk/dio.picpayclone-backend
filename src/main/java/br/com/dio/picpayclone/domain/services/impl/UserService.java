@@ -1,6 +1,7 @@
 package br.com.dio.picpayclone.domain.services.impl;
 
 import br.com.dio.picpayclone.application.ports.outbound.IUserGateway;
+import br.com.dio.picpayclone.domain.constants.ValidationMessages;
 import br.com.dio.picpayclone.domain.exceptions.BusinessException;
 import br.com.dio.picpayclone.domain.models.Transaction;
 import br.com.dio.picpayclone.domain.models.User;
@@ -27,7 +28,7 @@ public class UserService implements IUserService {
     public void validate(User... users) {
         Arrays.asList(users).forEach(user -> {
             if (user == null) {
-                throw new BusinessException("Usuário informado não existe");
+                throw new BusinessException(ValidationMessages.ERROR_USER_NOT_EXISTS);
             }
         });
     }

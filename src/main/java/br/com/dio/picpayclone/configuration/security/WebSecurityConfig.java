@@ -1,8 +1,8 @@
 package br.com.dio.picpayclone.configuration.security;
 
 import br.com.dio.picpayclone.application.ports.inbound.ITokenService;
+import br.com.dio.picpayclone.domain.services.IUserService;
 import br.com.dio.picpayclone.infrastructure.persistence.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -20,14 +20,20 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    @Autowired
-    private ITokenService tokenService;
-
-    @Autowired
-    private UserRepository userRepository;
+    @Bean
+    public AuthenticationTokenFilter authenticationTokenFilter(
+            ITokenService tokenService,
+            UserRepository userRepository
+    ) {
+        return new AuthenticationTokenFilter(tokenService, userRepository);
+    }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(
+            HttpSecurity http,
+            AuthenticationTokenFilter authenticationTokenFilter
+    ) throws Exception {
+
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(HttpMethod.POST, "/authentication").permitAll()
                 .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
@@ -39,8 +45,7 @@ public class WebSecurityConfig {
         http.sessionManagement(sessionManagement -> sessionManagement
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-        http.addFilterBefore(new AuthenticationTokenFilter(tokenService, userRepository),
-                UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -53,8 +58,8 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public CustomUserDetailsService customUserDetailsService() {
-        return new CustomUserDetailsService();
+    public CustomUserDetailsService customUserDetailsService(IUserService userService) {
+        return new CustomUserDetailsService(userService);
     }
 
     @Bean

@@ -16,6 +16,7 @@ public class UserEntityMapper {
                 .birthday(userDomainModel.getBirthday())
                 .phoneNumber(userDomainModel.getPhoneNumber())
                 .balance(userDomainModel.getBalance())
+                .permission(userDomainModel.getPermission())
                 .active(userDomainModel.getActive())
                 .build();
     }
@@ -31,7 +32,9 @@ public class UserEntityMapper {
                 .birthday(userEntity.getBirthday())
                 .phoneNumber(userEntity.getPhoneNumber())
                 .balance(userEntity.getBalance())
+                .permission(userEntity.getPermission())
                 .active(userEntity.getActive())
                 .build();
     }
+
 }
