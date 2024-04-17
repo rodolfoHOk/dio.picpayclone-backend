@@ -1,8 +1,11 @@
 package br.com.dio.picpayclone.infrastructure.api.resources;
 
+import br.com.dio.picpayclone.application.dtos.TokenDTO;
+import br.com.dio.picpayclone.application.ports.inbound.IAuthenticateUseCase;
+import br.com.dio.picpayclone.infrastructure.api.mappers.LoginRequestMapper;
+import br.com.dio.picpayclone.infrastructure.api.requests.LoginRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,23 +16,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/authentication")
 public class AuthenticationResource extends BaseResource<TokenDTO> {
 
-    private final AuthenticationManager authenticationManager;
+    private final LoginRequestMapper loginRequestMapper;
+    private final IAuthenticateUseCase authenticateUseCase;
 
-    public AuthenticationResource(AuthenticationManager authenticationManager) {
-        this.authenticationManager = authenticationManager;
+    public AuthenticationResource(
+            LoginRequestMapper loginRequestMapper,
+            IAuthenticateUseCase authenticateUseCase
+    ) {
+        this.loginRequestMapper = loginRequestMapper;
+        this.authenticateUseCase = authenticateUseCase;
     }
 
     @PostMapping
-    public ResponseEntity<TokenDTO> authenticate(@RequestBody LoginDTO loginDTO) {
+    public ResponseEntity<TokenDTO> authenticate(@Valid @RequestBody LoginRequest loginRequest) {
         try {
-            UsernamePasswordAuthenticationToken loginData = loginDTO.convert();
-
-            var authentication = authenticationManager.authenticate(loginData);
-            var token = tokenService.genarateToken(authentication);
-
-            return successResponseWithItem(new TokenDTO(token, "Bearer"));
+            var loginDTO = loginRequestMapper.toDto(loginRequest);
+            var tokenDTO = authenticateUseCase.execute(loginDTO);
+            return successResponseWithItem(tokenDTO);
         } catch (AuthenticationException exception) {
             return badRequestResponse();
         }
     }
+
 }

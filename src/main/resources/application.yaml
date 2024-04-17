@@ -16,3 +16,8 @@ spring:
     format_sql: true
   api:
     version: 1.0.0
+
+picpayclone:
+  jwt:
+    expiration: 86400000
+    secret: YmYzYzgxMzI4YjlmZjJkN2ZiMTJjMjdmMmVmMjQ1ZjYwMDViNzhlZmQwOTdiZTY1Zjk4ZjY0ODc1NGQzZGU2NWM3MmNmMTNiZDIyZjk2ZjgyNzIzZTU2ZDgwZDRiYWVlNmYyNzdlZmNjZWQzMGJjMDE2NGQ3NzYyODA4YzM3OTY5NTY4MDNmZGJhNDBhOWQ2ZTVkMzk2ZDM3MjhmZDgzMjlkNGMyNThlZmQ0YjI5MWIzODA1YzdlNzhkNzk2Njcw
