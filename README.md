@@ -10,9 +10,9 @@
 
 ### Bibliotecas
 
-- Spring WEB
+- Spring WEB 6
 - Spring Data JPA
-- Spring Security
+- Spring Security 6
 - Spring DevTools
 - Validation (Jakarta)
 - PostgreSQL Driver

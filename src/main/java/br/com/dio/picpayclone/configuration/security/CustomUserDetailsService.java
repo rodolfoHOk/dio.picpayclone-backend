@@ -21,7 +21,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (!validateUser(user)) {
             throw new UsernameNotFoundException(ValidationMessages.ERROR_USER_WITHOUT_PERMISSION);
         }
-        return user;
+        return (AuthenticationUser) user;
     }
 
     private boolean validateUser(User user) {
