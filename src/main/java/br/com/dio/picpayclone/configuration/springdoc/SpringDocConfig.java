@@ -1,4 +1,4 @@
-package br.com.dio.picpayclone.configuration;
+package br.com.dio.picpayclone.configuration.springdoc;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;

@@ -1,4 +1,4 @@
-package br.com.dio.picpayclone.configuration;
+package br.com.dio.picpayclone.configuration.asyncexecutor;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

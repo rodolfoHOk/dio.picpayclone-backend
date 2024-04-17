@@ -1,4 +1,4 @@
-package br.com.dio.picpayclone.configuration;
+package br.com.dio.picpayclone.configuration.resources;
 
 import br.com.dio.picpayclone.application.ports.inbound.IAuthenticateUseCase;
 import br.com.dio.picpayclone.application.ports.inbound.ITokenService;
