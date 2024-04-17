@@ -2,10 +2,12 @@ package br.com.dio.picpayclone.configuration.security;
 
 import br.com.dio.picpayclone.application.ports.inbound.ITokenService;
 import br.com.dio.picpayclone.domain.services.IUserService;
-import br.com.dio.picpayclone.infrastructure.persistence.repositories.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -23,9 +25,9 @@ public class WebSecurityConfig {
     @Bean
     public AuthenticationTokenFilter authenticationTokenFilter(
             ITokenService tokenService,
-            UserRepository userRepository
+            IUserService userService
     ) {
-        return new AuthenticationTokenFilter(tokenService, userRepository);
+        return new AuthenticationTokenFilter(tokenService, userService);
     }
 
     @Bean
@@ -65,6 +67,22 @@ public class WebSecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider(
+            CustomUserDetailsService userDetailsService,
+            PasswordEncoder passwordEncoder
+    ) {
+        var provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailsService);
+        provider.setPasswordEncoder(passwordEncoder);
+        return provider;
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(DaoAuthenticationProvider authenticationProvider) {
+        return new ProviderManager(authenticationProvider);
     }
 
 }

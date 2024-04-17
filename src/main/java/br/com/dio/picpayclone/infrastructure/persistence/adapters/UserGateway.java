@@ -9,6 +9,7 @@ import br.com.dio.picpayclone.infrastructure.persistence.repositories.UserReposi
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 public class UserGateway implements IUserGateway {
 
@@ -16,6 +17,13 @@ public class UserGateway implements IUserGateway {
 
     public UserGateway(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    @Override
+    public User findById(UUID id) {
+        var userEntity = userRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(ValidationMessages.ERROR_USER_NOT_EXISTS));
+        return UserEntityMapper.toDomainModel(userEntity);
     }
 
     @Override

@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.UUID;
 
 public class UserService implements IUserService {
 
@@ -17,6 +18,11 @@ public class UserService implements IUserService {
 
     public UserService(IUserGateway userGateway) {
         this.userGateway = userGateway;
+    }
+
+    @Override
+    public User findById(UUID id) {
+        return userGateway.findById(id);
     }
 
     @Override
