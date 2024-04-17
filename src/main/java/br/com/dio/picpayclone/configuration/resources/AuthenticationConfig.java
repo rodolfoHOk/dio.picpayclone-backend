@@ -4,7 +4,7 @@ import br.com.dio.picpayclone.application.ports.inbound.IAuthenticateUseCase;
 import br.com.dio.picpayclone.application.ports.inbound.ITokenService;
 import br.com.dio.picpayclone.application.services.TokenService;
 import br.com.dio.picpayclone.application.usecases.AuthenticateUseCase;
-import br.com.dio.picpayclone.infrastructure.api.mappers.LoginRequestMapper;
+import br.com.dio.picpayclone.infrastructure.web.mappers.LoginRequestMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

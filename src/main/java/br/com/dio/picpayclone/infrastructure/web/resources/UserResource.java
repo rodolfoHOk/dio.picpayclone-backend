@@ -1,11 +1,11 @@
-package br.com.dio.picpayclone.infrastructure.api.resources;
+package br.com.dio.picpayclone.infrastructure.web.resources;
 
 import br.com.dio.picpayclone.application.dtos.BalanceDTO;
 import br.com.dio.picpayclone.application.dtos.UserDTO;
 import br.com.dio.picpayclone.application.ports.inbound.IGetUserBalanceByLoginUseCase;
 import br.com.dio.picpayclone.application.ports.inbound.IGetUserByLoginUseCase;
 import br.com.dio.picpayclone.application.ports.inbound.IListUserContactsByLoginUseCase;
-import br.com.dio.picpayclone.infrastructure.api.resources.openapi.IUserResource;
+import br.com.dio.picpayclone.infrastructure.web.resources.openapi.IUserResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,4 +1,4 @@
-package br.com.dio.picpayclone.infrastructure.api.resources;
+package br.com.dio.picpayclone.infrastructure.web.resources;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package br.com.dio.picpayclone.infrastructure.api.requests;
+package br.com.dio.picpayclone.infrastructure.web.requests;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

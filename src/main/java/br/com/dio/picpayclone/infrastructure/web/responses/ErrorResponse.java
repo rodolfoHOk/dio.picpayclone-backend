@@ -1,4 +1,4 @@
-package br.com.dio.picpayclone.infrastructure.api.responses;
+package br.com.dio.picpayclone.infrastructure.web.responses;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

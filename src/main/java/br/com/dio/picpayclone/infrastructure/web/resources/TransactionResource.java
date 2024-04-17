@@ -1,11 +1,11 @@
-package br.com.dio.picpayclone.infrastructure.api.resources;
+package br.com.dio.picpayclone.infrastructure.web.resources;
 
 import br.com.dio.picpayclone.application.dtos.TransactionDTO;
 import br.com.dio.picpayclone.application.ports.inbound.IListTransactionUseCase;
 import br.com.dio.picpayclone.application.ports.inbound.IProcessTransactionUseCase;
-import br.com.dio.picpayclone.infrastructure.api.mappers.TransactionRequestMapper;
-import br.com.dio.picpayclone.infrastructure.api.requests.TransactionRequest;
-import br.com.dio.picpayclone.infrastructure.api.resources.openapi.ITransactionResource;
+import br.com.dio.picpayclone.infrastructure.web.mappers.TransactionRequestMapper;
+import br.com.dio.picpayclone.infrastructure.web.requests.TransactionRequest;
+import br.com.dio.picpayclone.infrastructure.web.resources.openapi.ITransactionResource;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

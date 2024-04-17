@@ -1,7 +1,7 @@
-package br.com.dio.picpayclone.infrastructure.api.mappers;
+package br.com.dio.picpayclone.infrastructure.web.mappers;
 
 import br.com.dio.picpayclone.application.dtos.TransactionDTO;
-import br.com.dio.picpayclone.infrastructure.api.requests.TransactionRequest;
+import br.com.dio.picpayclone.infrastructure.web.requests.TransactionRequest;
 import org.modelmapper.ModelMapper;
 
 public class TransactionRequestMapper {

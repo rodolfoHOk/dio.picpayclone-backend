@@ -1,9 +1,9 @@
-package br.com.dio.picpayclone.infrastructure.api.resources;
+package br.com.dio.picpayclone.infrastructure.web.resources;
 
 import br.com.dio.picpayclone.application.dtos.TokenDTO;
 import br.com.dio.picpayclone.application.ports.inbound.IAuthenticateUseCase;
-import br.com.dio.picpayclone.infrastructure.api.mappers.LoginRequestMapper;
-import br.com.dio.picpayclone.infrastructure.api.requests.LoginRequest;
+import br.com.dio.picpayclone.infrastructure.web.mappers.LoginRequestMapper;
+import br.com.dio.picpayclone.infrastructure.web.requests.LoginRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;

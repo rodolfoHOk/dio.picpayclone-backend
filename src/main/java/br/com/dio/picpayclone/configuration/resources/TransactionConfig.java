@@ -13,7 +13,7 @@ import br.com.dio.picpayclone.domain.services.IUserService;
 import br.com.dio.picpayclone.domain.services.impl.CreditCardService;
 import br.com.dio.picpayclone.infrastructure.persistence.adapters.CreditCardGateway;
 import br.com.dio.picpayclone.infrastructure.persistence.adapters.TransactionGateway;
-import br.com.dio.picpayclone.infrastructure.api.mappers.TransactionRequestMapper;
+import br.com.dio.picpayclone.infrastructure.web.mappers.TransactionRequestMapper;
 import br.com.dio.picpayclone.infrastructure.persistence.repositories.CreditCardRepository;
 import br.com.dio.picpayclone.infrastructure.persistence.repositories.TransactionRepository;
 import org.modelmapper.ModelMapper;
