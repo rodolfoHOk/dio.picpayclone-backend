@@ -10,6 +10,14 @@ import java.util.List;
 
 public class AuthenticationUser extends User implements UserDetails {
 
+    public AuthenticationUser(User user) {
+        this.setId(user.getId());
+        this.setLogin(user.getLogin());
+        this.setPassword(user.getPassword());
+        this.setPermission(user.getPermission());
+        this.setActive(user.getActive());
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(

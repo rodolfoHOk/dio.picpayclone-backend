@@ -14,6 +14,8 @@ import java.util.UUID;
 
 public class JJWTTokenService implements ITokenService {
 
+    private static final String ALGORITHM = "HmacSHA256";
+
     @Value("${picpayclone.jwt.expiration}")
     private String expiration;
 
@@ -52,7 +54,7 @@ public class JJWTTokenService implements ITokenService {
     }
 
     private SecretKeySpec getSecretKey() {
-        return new SecretKeySpec(secret.getBytes(), Jwts.SIG.HS256.toString());
+        return new SecretKeySpec(secret.getBytes(), ALGORITHM);
     }
 
 }
