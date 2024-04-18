@@ -7,6 +7,8 @@
 - PostgreSQL
 - Clean Architecture (Hexagonal Architecture)
 - Authentication with JWT
+- Cache
+- Redis
 
 ### Bibliotecas
 
@@ -14,6 +16,7 @@
 - Spring Data JPA
 - Spring Security 6
 - Spring DevTools
+- Spring Data Redis
 - Validation (Jakarta)
 - PostgreSQL Driver
 - JJWT

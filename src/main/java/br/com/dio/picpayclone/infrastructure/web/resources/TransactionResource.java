@@ -7,6 +7,8 @@ import br.com.dio.picpayclone.infrastructure.web.mappers.TransactionRequestMappe
 import br.com.dio.picpayclone.infrastructure.web.requests.TransactionRequest;
 import br.com.dio.picpayclone.infrastructure.web.resources.openapi.ITransactionResource;
 import jakarta.validation.Valid;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -38,6 +40,7 @@ public class TransactionResource extends BaseResource<TransactionDTO> implements
 
     @Override
     @PostMapping
+    @CacheEvict(cacheNames = "Transactions", allEntries = true)
     public ResponseEntity<TransactionDTO> save(
             @RequestBody @Valid TransactionRequest request,
             UriComponentsBuilder uriComponentsBuilder) {
@@ -48,6 +51,7 @@ public class TransactionResource extends BaseResource<TransactionDTO> implements
 
     @Override
     @GetMapping
+    @Cacheable(cacheNames = "Transactions", key = "#root.method.name")
     public ResponseEntity<Page<TransactionDTO>> listByLogin(
             @PageableDefault(page = 0, size = 20) Pageable pageable,
             @RequestParam String login) {

@@ -12,6 +12,11 @@ services:
       - '5432:5432'
     volumes:
       - 'picpay-db:/var/lib/postgresql/data'
+  redis:
+    image: redis:7.2.4-alpine3.19
+    command: redis-server --loglevel warning --requirepass admin
+    ports:
+      - "6379:6379"
 
 volumes:
   picpay-db:
