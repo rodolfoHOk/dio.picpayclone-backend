@@ -19,9 +19,22 @@ spring:
   redis:
     host: localhost
     port: 6379
-    password: admin
   api:
     version: 1.0.0
+
+springdoc:
+  show-actuator: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+    webexposure:
+      include: '*'
+info:
+  app:
+    name: '@project.name@'
+    version: '@project.version@'
 
 picpayclone:
   jwt:
