@@ -16,7 +16,7 @@
 - Spring DevTools
 - Validation (Jakarta)
 - PostgreSQL Driver
-- JJWT API
+- JJWT
 - Lombok
 - ModelMapper
 

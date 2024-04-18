@@ -25,29 +25,25 @@ public class WebSecurityConfig {
     @Bean
     public AuthenticationTokenFilter authenticationTokenFilter(
             ITokenService tokenService,
-            IUserService userService
-    ) {
+            IUserService userService) {
+
         return new AuthenticationTokenFilter(tokenService, userService);
     }
 
     @Bean
     public SecurityFilterChain filterChain(
             HttpSecurity http,
-            AuthenticationTokenFilter authenticationTokenFilter
-    ) throws Exception {
+            AuthenticationTokenFilter authenticationTokenFilter) throws Exception {
 
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(HttpMethod.POST, "/authentication").permitAll()
-                .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
-                .anyRequest().authenticated()
-        );
-
-        http.csrf(AbstractHttpConfigurer::disable);
-
-        http.sessionManagement(sessionManagement -> sessionManagement
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-
-        http.addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+                        .requestMatchers(HttpMethod.POST, "/authentication").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .csrf(AbstractHttpConfigurer::disable)
+                .sessionManagement(sessionManagement -> sessionManagement
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -60,7 +56,7 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public CustomUserDetailsService customUserDetailsService(IUserService userService) {
+    public CustomUserDetailsService userDetailsService(IUserService userService) {
         return new CustomUserDetailsService(userService);
     }
 
@@ -70,18 +66,14 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider(
+    public AuthenticationManager authenticationManager(
             CustomUserDetailsService userDetailsService,
-            PasswordEncoder passwordEncoder
-    ) {
-        var provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(passwordEncoder);
-        return provider;
-    }
+            PasswordEncoder passwordEncoder) {
 
-    @Bean
-    public AuthenticationManager authenticationManager(DaoAuthenticationProvider authenticationProvider) {
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userDetailsService);
+        authenticationProvider.setPasswordEncoder(passwordEncoder);
+
         return new ProviderManager(authenticationProvider);
     }
 
