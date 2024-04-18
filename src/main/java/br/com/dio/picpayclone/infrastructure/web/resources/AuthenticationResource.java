@@ -1,7 +1,8 @@
 package br.com.dio.picpayclone.infrastructure.web.resources;
 
-import br.com.dio.picpayclone.infrastructure.web.responses.TokenResponse;
-import br.com.dio.picpayclone.infrastructure.web.security.usecases.IAuthenticateUseCase;
+import br.com.dio.picpayclone.application.dtos.TokenDTO;
+import br.com.dio.picpayclone.application.ports.inbound.IAuthenticateUseCase;
+import br.com.dio.picpayclone.infrastructure.web.mappers.LoginRequestMapper;
 import br.com.dio.picpayclone.infrastructure.web.requests.LoginRequest;
 import br.com.dio.picpayclone.infrastructure.web.resources.openapi.IAuthenticationResource;
 import jakarta.validation.Valid;
@@ -14,21 +15,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/authentication")
-public class AuthenticationResource extends BaseResource<TokenResponse> implements IAuthenticationResource {
+public class AuthenticationResource extends BaseResource<TokenDTO> implements IAuthenticationResource {
 
+    private final LoginRequestMapper loginRequestMapper;
     private final IAuthenticateUseCase authenticateUseCase;
 
     public AuthenticationResource(
+            LoginRequestMapper loginRequestMapper,
             IAuthenticateUseCase authenticateUseCase
     ) {
+        this.loginRequestMapper = loginRequestMapper;
         this.authenticateUseCase = authenticateUseCase;
     }
 
     @Override
     @PostMapping
-    public ResponseEntity<TokenResponse> authenticate(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<TokenDTO> authenticate(@Valid @RequestBody LoginRequest loginRequest) {
         try {
-            var tokenResponse = authenticateUseCase.execute(loginRequest);
+            var loginDTO = loginRequestMapper.toDTO(loginRequest);
+            var tokenResponse = authenticateUseCase.execute(loginDTO);
             return successResponseWithItem(tokenResponse);
         } catch (AuthenticationException exception) {
             return badRequestResponse();

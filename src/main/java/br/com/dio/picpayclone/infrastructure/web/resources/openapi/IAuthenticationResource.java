@@ -1,6 +1,6 @@
 package br.com.dio.picpayclone.infrastructure.web.resources.openapi;
 
-import br.com.dio.picpayclone.infrastructure.web.responses.TokenResponse;
+import br.com.dio.picpayclone.application.dtos.TokenDTO;
 import br.com.dio.picpayclone.infrastructure.web.requests.LoginRequest;
 import br.com.dio.picpayclone.infrastructure.web.responses.ErrorResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,5 +21,5 @@ public interface IAuthenticationResource {
             @ApiResponse(responseCode = "404", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
     })
     @SecurityRequirements()
-    ResponseEntity<TokenResponse> authenticate(LoginRequest loginRequest);
+    ResponseEntity<TokenDTO> authenticate(LoginRequest loginRequest);
 }
