@@ -1,7 +1,9 @@
-package br.com.dio.picpayclone.configuration.security;
+package br.com.dio.picpayclone.infrastructure.web.security.configuration;
 
-import br.com.dio.picpayclone.application.ports.inbound.ITokenService;
+import br.com.dio.picpayclone.infrastructure.web.security.services.CustomUserDetailsService;
+import br.com.dio.picpayclone.infrastructure.web.security.services.ITokenService;
 import br.com.dio.picpayclone.domain.services.IUserService;
+import br.com.dio.picpayclone.infrastructure.web.security.services.impl.JJWTTokenService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -21,6 +23,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
+
+    @Bean
+    public ITokenService tokenService() {
+        return new JJWTTokenService();
+    }
 
     @Bean
     public AuthenticationTokenFilter authenticationTokenFilter(

@@ -1,6 +1,5 @@
 package br.com.dio.picpayclone.application.dtos;
 
-
 import br.com.dio.picpayclone.domain.enums.CardBanner;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

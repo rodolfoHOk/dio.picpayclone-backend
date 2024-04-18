@@ -1,4 +1,4 @@
-package br.com.dio.picpayclone.application.dtos;
+package br.com.dio.picpayclone.infrastructure.web.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TokenDTO {
+public class TokenResponse {
 
     private String token;
     private String type;

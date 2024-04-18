@@ -51,16 +51,18 @@ public class TransactionConfig {
     public ICreditCardService creditCardService(
             CreditCardConverter creditCardConverter,
             ICreditCardGateway creditCardGateway) {
-        return new CreditCardService(creditCardConverter, creditCardGateway);
+        return new CreditCardService(creditCardGateway);
     }
 
     @Bean
     public IProcessTransactionUseCase processTransactionUseCase(
+            CreditCardConverter creditCardConverter,
             TransactionConverter transactionConverter,
             IUserService userService,
             ICreditCardService creditCardService,
             ITransactionGateway transactionGateway) {
         return new ProcessTransactionUseCase(
+                creditCardConverter,
                 transactionConverter,
                 userService,
                 creditCardService,

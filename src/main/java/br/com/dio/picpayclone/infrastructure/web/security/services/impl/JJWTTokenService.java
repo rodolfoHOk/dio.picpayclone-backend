@@ -1,7 +1,7 @@
-package br.com.dio.picpayclone.application.services;
+package br.com.dio.picpayclone.infrastructure.web.security.services.impl;
 
-import br.com.dio.picpayclone.application.ports.inbound.ITokenService;
 import br.com.dio.picpayclone.domain.models.User;
+import br.com.dio.picpayclone.infrastructure.web.security.services.ITokenService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
@@ -12,7 +12,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.util.Date;
 import java.util.UUID;
 
-public class TokenService implements ITokenService {
+public class JJWTTokenService implements ITokenService {
 
     @Value("${picpayclone.jwt.expiration}")
     private String expiration;

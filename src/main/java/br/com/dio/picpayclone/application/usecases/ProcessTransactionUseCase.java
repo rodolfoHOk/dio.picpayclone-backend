@@ -1,5 +1,6 @@
 package br.com.dio.picpayclone.application.usecases;
 
+import br.com.dio.picpayclone.application.converter.CreditCardConverter;
 import br.com.dio.picpayclone.application.converter.TransactionConverter;
 import br.com.dio.picpayclone.application.dtos.TransactionDTO;
 import br.com.dio.picpayclone.application.ports.inbound.IProcessTransactionUseCase;
@@ -10,16 +11,20 @@ import br.com.dio.picpayclone.domain.services.IUserService;
 
 public class ProcessTransactionUseCase implements IProcessTransactionUseCase {
 
+    private final CreditCardConverter creditCardConverter;
     private final TransactionConverter transactionConverter;
     private final IUserService userService;
     private final ICreditCardService creditCardService;
     private final ITransactionGateway transactionGateway;
 
     public ProcessTransactionUseCase(
+            CreditCardConverter creditCardConverter,
             TransactionConverter transactionConverter,
             IUserService userService,
             ICreditCardService creditCardService,
             ITransactionGateway transactionGateway) {
+
+        this.creditCardConverter = creditCardConverter;
         this.transactionConverter = transactionConverter;
         this.userService = userService;
         this.creditCardService = creditCardService;
@@ -32,7 +37,7 @@ public class ProcessTransactionUseCase implements IProcessTransactionUseCase {
         if (transactionDTO.getIsCreditCard() &&
                 transactionDTO.getCreditCard() != null &&
                 transactionDTO.getCreditCard().getIsSaved()) {
-            creditCardService.save(transactionDTO.getCreditCard());
+            creditCardService.save(creditCardConverter.dtoToEntityConverter(transactionDTO.getCreditCard()));
         }
         userService.updateBalance(savedTransaction, transactionDTO.getIsCreditCard());
         return transactionConverter.entityToDtoConverter(savedTransaction);

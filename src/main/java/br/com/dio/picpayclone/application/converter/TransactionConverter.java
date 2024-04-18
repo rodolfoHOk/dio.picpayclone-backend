@@ -1,10 +1,10 @@
 package br.com.dio.picpayclone.application.converter;
 
+import br.com.dio.picpayclone.application.dtos.PageDTO;
 import br.com.dio.picpayclone.application.dtos.TransactionDTO;
 import br.com.dio.picpayclone.domain.models.Transaction;
 import br.com.dio.picpayclone.domain.services.IUserService;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
 
 public class TransactionConverter extends BaseConverter<Transaction, TransactionDTO> {
 
@@ -33,7 +33,7 @@ public class TransactionConverter extends BaseConverter<Transaction, Transaction
     }
 
     @SuppressWarnings("unchecked")
-    public Page<TransactionDTO> pageEntityToDtoConverter(Page<Transaction> entity) {
-        return modelMapper.map(entity, Page.class);
+    public PageDTO<TransactionDTO> pageEntityToDtoConverter(PageDTO<Transaction> entity) {
+        return modelMapper.map(entity, PageDTO.class);
     }
 }

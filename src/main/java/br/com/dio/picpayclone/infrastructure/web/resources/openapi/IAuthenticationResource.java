@@ -1,6 +1,6 @@
 package br.com.dio.picpayclone.infrastructure.web.resources.openapi;
 
-import br.com.dio.picpayclone.application.dtos.TokenDTO;
+import br.com.dio.picpayclone.infrastructure.web.responses.TokenResponse;
 import br.com.dio.picpayclone.infrastructure.web.requests.LoginRequest;
 import br.com.dio.picpayclone.infrastructure.web.responses.ErrorResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,11 +15,11 @@ import org.springframework.http.ResponseEntity;
 @Tag(name = "Autenticação")
 public interface IAuthenticationResource {
 
-    @Operation(summary = "Autentica usuário", responses = {
+    @Operation(summary = "Autêntica usuário", responses = {
             @ApiResponse(responseCode = "201"),
             @ApiResponse(responseCode = "400", content = @Content(array = @ArraySchema(schema = @Schema(implementation = ErrorResponse.class)))),
             @ApiResponse(responseCode = "404", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
     })
     @SecurityRequirements()
-    ResponseEntity<TokenDTO> authenticate(LoginRequest loginRequest);
+    ResponseEntity<TokenResponse> authenticate(LoginRequest loginRequest);
 }

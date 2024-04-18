@@ -1,4 +1,4 @@
-package br.com.dio.picpayclone.configuration.security;
+package br.com.dio.picpayclone.infrastructure.web.security.models;
 
 import br.com.dio.picpayclone.domain.models.User;
 import org.springframework.security.core.GrantedAuthority;

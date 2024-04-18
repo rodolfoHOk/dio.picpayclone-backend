@@ -1,8 +1,9 @@
-package br.com.dio.picpayclone.configuration.security;
+package br.com.dio.picpayclone.infrastructure.web.security.services;
 
 import br.com.dio.picpayclone.domain.constants.ValidationMessages;
 import br.com.dio.picpayclone.domain.models.User;
 import br.com.dio.picpayclone.domain.services.IUserService;
+import br.com.dio.picpayclone.infrastructure.web.security.models.AuthenticationUser;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

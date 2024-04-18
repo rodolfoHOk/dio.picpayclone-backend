@@ -1,9 +1,9 @@
 package br.com.dio.picpayclone.infrastructure.persistence.adapters.mapper;
 
+import br.com.dio.picpayclone.application.dtos.PageDTO;
 import br.com.dio.picpayclone.domain.models.Transaction;
 import br.com.dio.picpayclone.infrastructure.persistence.entities.TransactionEntity;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 
 public class TransactionEntityMapper {
 
@@ -29,10 +29,14 @@ public class TransactionEntityMapper {
                 .build();
     }
 
-    public static Page<Transaction> toPagedDomainModel(Page<TransactionEntity> pagedTransactionsEntities) {
-        return new PageImpl<>(
-                pagedTransactionsEntities.getContent().stream().map(TransactionEntityMapper::toDomainModel).toList(),
-                pagedTransactionsEntities.getPageable(),
-                pagedTransactionsEntities.getTotalElements());
+    public static PageDTO<Transaction> toPagedDomainModel(Page<TransactionEntity> pagedTransactionsEntities) {
+        var pagedTransactions = new PageDTO<Transaction>();
+        pagedTransactions.setContent(pagedTransactionsEntities.getContent().stream()
+                .map(TransactionEntityMapper::toDomainModel).toList());
+        pagedTransactions.setNumber(pagedTransactionsEntities.getNumber());
+        pagedTransactions.setSize(pagedTransactionsEntities.getSize());
+        pagedTransactions.setTotalPages(pagedTransactionsEntities.getTotalPages());
+        pagedTransactions.setTotalElements(pagedTransactionsEntities.getTotalElements());
+        return pagedTransactions;
     }
 }

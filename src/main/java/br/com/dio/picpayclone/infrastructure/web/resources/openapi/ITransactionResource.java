@@ -1,5 +1,7 @@
 package br.com.dio.picpayclone.infrastructure.web.resources.openapi;
 
+import br.com.dio.picpayclone.application.dtos.PageDTO;
+import br.com.dio.picpayclone.application.dtos.PageableDTO;
 import br.com.dio.picpayclone.application.dtos.TransactionDTO;
 import br.com.dio.picpayclone.infrastructure.web.requests.TransactionRequest;
 import br.com.dio.picpayclone.infrastructure.web.responses.ErrorResponse;
@@ -9,8 +11,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -35,7 +35,7 @@ public interface ITransactionResource {
             @ApiResponse(responseCode = "403", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "404", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
     })
-    ResponseEntity<Page<TransactionDTO>> listByLogin(
-            Pageable pageable,
+    ResponseEntity<PageDTO<TransactionDTO>> listByLogin(
+            PageableDTO pageable,
             String login);
 }

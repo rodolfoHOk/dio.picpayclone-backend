@@ -1,5 +1,7 @@
 package br.com.dio.picpayclone.infrastructure.web.resources;
 
+import br.com.dio.picpayclone.application.dtos.PageDTO;
+import br.com.dio.picpayclone.application.dtos.PageableDTO;
 import br.com.dio.picpayclone.application.dtos.TransactionDTO;
 import br.com.dio.picpayclone.application.ports.inbound.IListTransactionUseCase;
 import br.com.dio.picpayclone.application.ports.inbound.IProcessTransactionUseCase;
@@ -9,8 +11,6 @@ import br.com.dio.picpayclone.infrastructure.web.resources.openapi.ITransactionR
 import jakarta.validation.Valid;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,8 +52,8 @@ public class TransactionResource extends BaseResource<TransactionDTO> implements
     @Override
     @GetMapping
     @Cacheable(cacheNames = "Transactions", key = "#root.method.name")
-    public ResponseEntity<Page<TransactionDTO>> listByLogin(
-            @PageableDefault(page = 0, size = 20) Pageable pageable,
+    public ResponseEntity<PageDTO<TransactionDTO>> listByLogin(
+            @PageableDefault(page = 0, size = 20) PageableDTO pageable,
             @RequestParam String login) {
         var pagedTransactions = listTransactionUseCase.execute(pageable, login);
         return pagedItemsListResponse(pagedTransactions);

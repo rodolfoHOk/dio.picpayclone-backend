@@ -40,3 +40,7 @@
 - popular dados src/main/resources/data.sql no banco
 - ./mvnw package
 - java -jar target/picpayclone-0.0.1-SNAPSHOT.jar
+
+## Links
+
+- [Prometheus example](https://dontpad.com/livecoding/picpay)

@@ -1,6 +1,6 @@
 package br.com.dio.picpayclone.infrastructure.web.resources;
 
-import org.springframework.data.domain.Page;
+import br.com.dio.picpayclone.application.dtos.PageDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -46,7 +46,7 @@ public abstract class BaseResource<T> {
         return ResponseEntity.badRequest().build();
     }
 
-    protected ResponseEntity<Page<T>> pagedItemsListResponse(Page<T> items) {
+    protected ResponseEntity<PageDTO<T>> pagedItemsListResponse(PageDTO<T> items) {
         return ResponseEntity.status(HttpStatus.OK).body(items);
     }
 }

@@ -1,9 +1,9 @@
-package br.com.dio.picpayclone.application.usecases;
+package br.com.dio.picpayclone.infrastructure.web.security.usecases;
 
-import br.com.dio.picpayclone.application.dtos.LoginDTO;
-import br.com.dio.picpayclone.application.dtos.TokenDTO;
-import br.com.dio.picpayclone.application.ports.inbound.IAuthenticateUseCase;
-import br.com.dio.picpayclone.application.ports.inbound.ITokenService;
+import br.com.dio.picpayclone.infrastructure.web.requests.LoginRequest;
+import br.com.dio.picpayclone.infrastructure.web.responses.TokenResponse;
+import br.com.dio.picpayclone.infrastructure.web.security.services.ITokenService;
+import br.com.dio.picpayclone.infrastructure.web.mappers.AuthenticationTokenMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
@@ -18,11 +18,11 @@ public class AuthenticateUseCase implements IAuthenticateUseCase {
     }
 
     @Override
-    public TokenDTO execute(LoginDTO loginDTO) {
-        UsernamePasswordAuthenticationToken loginData = loginDTO.convert();
+    public TokenResponse execute(LoginRequest loginRequest) {
+        UsernamePasswordAuthenticationToken loginData = AuthenticationTokenMapper.toAuthenticationToken(loginRequest);
         var authentication = authenticationManager.authenticate(loginData);
         String token = tokenService.generateToken(authentication);
-        return new TokenDTO(token, "Bearer");
+        return new TokenResponse(token, "Bearer");
     }
 
 }

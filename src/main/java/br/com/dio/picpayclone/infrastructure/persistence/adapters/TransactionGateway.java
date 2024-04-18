@@ -1,11 +1,12 @@
 package br.com.dio.picpayclone.infrastructure.persistence.adapters;
 
+import br.com.dio.picpayclone.application.dtos.PageDTO;
+import br.com.dio.picpayclone.application.dtos.PageableDTO;
 import br.com.dio.picpayclone.application.ports.outbound.ITransactionGateway;
 import br.com.dio.picpayclone.domain.models.Transaction;
+import br.com.dio.picpayclone.infrastructure.persistence.adapters.mapper.PageableMapper;
 import br.com.dio.picpayclone.infrastructure.persistence.adapters.mapper.TransactionEntityMapper;
 import br.com.dio.picpayclone.infrastructure.persistence.repositories.TransactionRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 public class TransactionGateway implements ITransactionGateway {
 
@@ -23,7 +24,8 @@ public class TransactionGateway implements ITransactionGateway {
     }
 
     @Override
-    public Page<Transaction> findAllByLogin(Pageable pageable, String login) {
+    public PageDTO<Transaction> findAllByLogin(PageableDTO pageableDTO, String login) {
+        var pageable = PageableMapper.toEntity(pageableDTO);
         var pagedTransactionsEntities = transactionRepository.findAllByOriginLoginOrDestinationLogin(pageable, login, login);
         return TransactionEntityMapper.toPagedDomainModel(pagedTransactionsEntities);
     }
