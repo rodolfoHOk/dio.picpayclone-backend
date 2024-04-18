@@ -9,6 +9,7 @@
 - Authentication with JWT
 - Cache
 - Redis
+- OpenApi Swagger UI documentation
 
 ### Bibliotecas
 
@@ -17,6 +18,8 @@
 - Spring Security 6
 - Spring DevTools
 - Spring Data Redis
+- Spring Actuator
+- SpringDoc
 - Validation (Jakarta)
 - PostgreSQL Driver
 - JJWT
@@ -32,7 +35,7 @@
 ### Requisitos
 
 - Docker instalado
-- Java 21 Runtime instalado
+- Java 21 instalado
 
 ### Comandos
 
