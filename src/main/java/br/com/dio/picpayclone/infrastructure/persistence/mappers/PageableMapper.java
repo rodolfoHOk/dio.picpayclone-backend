@@ -1,4 +1,4 @@
-package br.com.dio.picpayclone.infrastructure.persistence.adapters.mapper;
+package br.com.dio.picpayclone.infrastructure.persistence.mappers;
 
 import br.com.dio.picpayclone.application.dtos.PageableDTO;
 import org.springframework.data.domain.PageRequest;

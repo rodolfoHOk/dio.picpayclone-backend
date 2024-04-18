@@ -3,7 +3,7 @@ package br.com.dio.picpayclone.application.converter;
 import br.com.dio.picpayclone.application.dtos.CreditCardDTO;
 import br.com.dio.picpayclone.domain.models.CreditCard;
 import br.com.dio.picpayclone.domain.services.IUserService;
-import br.com.dio.picpayclone.utils.CreditCardUtils;
+import br.com.dio.picpayclone.domain.utils.CreditCardUtils;
 import org.modelmapper.ModelMapper;
 
 public class CreditCardConverter extends BaseConverter<CreditCard, CreditCardDTO> {

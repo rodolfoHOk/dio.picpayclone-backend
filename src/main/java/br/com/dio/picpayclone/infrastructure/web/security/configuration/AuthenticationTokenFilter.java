@@ -1,9 +1,9 @@
 package br.com.dio.picpayclone.infrastructure.web.security.configuration;
 
-import br.com.dio.picpayclone.infrastructure.web.security.models.AuthenticationUser;
-import br.com.dio.picpayclone.infrastructure.web.security.services.ITokenService;
 import br.com.dio.picpayclone.domain.models.User;
 import br.com.dio.picpayclone.domain.services.IUserService;
+import br.com.dio.picpayclone.infrastructure.web.security.models.AuthenticationUser;
+import br.com.dio.picpayclone.infrastructure.web.security.services.ITokenService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

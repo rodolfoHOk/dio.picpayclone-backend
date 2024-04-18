@@ -2,7 +2,7 @@ package br.com.dio.picpayclone.infrastructure.persistence.adapters;
 
 import br.com.dio.picpayclone.application.ports.outbound.ICreditCardGateway;
 import br.com.dio.picpayclone.domain.models.CreditCard;
-import br.com.dio.picpayclone.infrastructure.persistence.adapters.mapper.CreditCardEntityMapper;
+import br.com.dio.picpayclone.infrastructure.persistence.mappers.CreditCardEntityMapper;
 import br.com.dio.picpayclone.infrastructure.persistence.repositories.CreditCardRepository;
 
 public class CreditCardGateway implements ICreditCardGateway {

@@ -4,8 +4,8 @@ import br.com.dio.picpayclone.application.dtos.PageDTO;
 import br.com.dio.picpayclone.application.dtos.PageableDTO;
 import br.com.dio.picpayclone.application.ports.outbound.ITransactionGateway;
 import br.com.dio.picpayclone.domain.models.Transaction;
-import br.com.dio.picpayclone.infrastructure.persistence.adapters.mapper.PageableMapper;
-import br.com.dio.picpayclone.infrastructure.persistence.adapters.mapper.TransactionEntityMapper;
+import br.com.dio.picpayclone.infrastructure.persistence.mappers.PageableMapper;
+import br.com.dio.picpayclone.infrastructure.persistence.mappers.TransactionEntityMapper;
 import br.com.dio.picpayclone.infrastructure.persistence.repositories.TransactionRepository;
 
 public class TransactionGateway implements ITransactionGateway {

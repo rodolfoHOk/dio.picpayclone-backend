@@ -1,8 +1,8 @@
 package br.com.dio.picpayclone.infrastructure.web.security.configuration;
 
+import br.com.dio.picpayclone.domain.services.IUserService;
 import br.com.dio.picpayclone.infrastructure.web.security.services.CustomUserDetailsService;
 import br.com.dio.picpayclone.infrastructure.web.security.services.ITokenService;
-import br.com.dio.picpayclone.domain.services.IUserService;
 import br.com.dio.picpayclone.infrastructure.web.security.services.impl.JJWTTokenService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

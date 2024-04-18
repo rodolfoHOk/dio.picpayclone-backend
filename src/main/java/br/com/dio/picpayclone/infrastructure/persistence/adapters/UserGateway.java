@@ -4,7 +4,7 @@ import br.com.dio.picpayclone.application.ports.outbound.IUserGateway;
 import br.com.dio.picpayclone.domain.constants.ValidationMessages;
 import br.com.dio.picpayclone.domain.exceptions.NotFoundException;
 import br.com.dio.picpayclone.domain.models.User;
-import br.com.dio.picpayclone.infrastructure.persistence.adapters.mapper.UserEntityMapper;
+import br.com.dio.picpayclone.infrastructure.persistence.mappers.UserEntityMapper;
 import br.com.dio.picpayclone.infrastructure.persistence.repositories.UserRepository;
 
 import java.math.BigDecimal;

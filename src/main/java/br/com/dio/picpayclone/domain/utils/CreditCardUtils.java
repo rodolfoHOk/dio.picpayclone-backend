@@ -1,4 +1,4 @@
-package br.com.dio.picpayclone.utils;
+package br.com.dio.picpayclone.domain.utils;
 
 public class CreditCardUtils {
     public static String mask(String cardNumber) {
