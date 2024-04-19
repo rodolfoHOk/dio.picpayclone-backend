@@ -4,6 +4,8 @@ import br.com.dio.picpayclone.application.dtos.UserDTO;
 import br.com.dio.picpayclone.domain.models.User;
 import org.modelmapper.ModelMapper;
 
+import java.time.format.DateTimeFormatter;
+
 public class UserConverter extends BaseConverter<User, UserDTO> {
 
     private final ModelMapper modelMapper;
@@ -14,7 +16,15 @@ public class UserConverter extends BaseConverter<User, UserDTO> {
 
     @Override
     public UserDTO entityToDtoConverter(User entity) {
-        return modelMapper.map(entity, UserDTO.class);
+        return UserDTO.builder()
+                .login(entity.getLogin())
+                .email(entity.getEmail())
+                .completeName(entity.getCompleteName())
+                .cpf(entity.getCpf())
+                .birthday(entity.getBirthday().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+                .phoneNumber(entity.getPhoneNumber())
+                .balance(entity.getBalance())
+                .build();
     }
 
     @Override

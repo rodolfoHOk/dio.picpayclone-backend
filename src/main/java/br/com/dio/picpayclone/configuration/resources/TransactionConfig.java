@@ -2,6 +2,7 @@ package br.com.dio.picpayclone.configuration.resources;
 
 import br.com.dio.picpayclone.application.converter.CreditCardConverter;
 import br.com.dio.picpayclone.application.converter.TransactionConverter;
+import br.com.dio.picpayclone.application.converter.UserConverter;
 import br.com.dio.picpayclone.application.ports.inbound.IListTransactionUseCase;
 import br.com.dio.picpayclone.application.ports.inbound.IProcessTransactionUseCase;
 import br.com.dio.picpayclone.application.ports.outbound.ITransactionGateway;
@@ -25,8 +26,8 @@ public class TransactionConfig {
     }
 
     @Bean
-    public TransactionConverter transactionConverter(ModelMapper modelMapper, IUserService userService) {
-        return new TransactionConverter(modelMapper, userService);
+    public TransactionConverter transactionConverter(UserConverter userConverter, IUserService userService) {
+        return new TransactionConverter(userConverter, userService);
     }
 
     @Bean

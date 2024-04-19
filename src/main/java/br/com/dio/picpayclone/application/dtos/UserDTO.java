@@ -1,13 +1,14 @@
 package br.com.dio.picpayclone.application.dtos;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,7 +18,7 @@ public class UserDTO {
         private String email;
         private String completeName;
         private String cpf;
-        private LocalDate birthday;
+        private String birthday;
         private String phoneNumber;
         private BigDecimal balance;
 }

@@ -23,7 +23,7 @@ public class CacheConfig {
 
     @Bean
     public CacheManager cacheManager(ObjectMapper objectMapper) {
-        SimpleCacheManager cacheManager = new SimpleCacheManager();
+        var cacheManager = new SimpleCacheManager();
         cacheManager.setCaches(List.of(
                 new ConcurrentMapCache("transactions")
         ));
