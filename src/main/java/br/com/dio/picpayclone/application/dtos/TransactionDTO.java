@@ -13,11 +13,11 @@ import java.time.OffsetDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TransactionDTO {
-    String code;
-    UserDTO origin;
-    UserDTO destination;
-    OffsetDateTime dateTime;
-    BigDecimal amount;
-    CreditCardDTO creditCard;
-    Boolean isCreditCard;
+    private String code;
+    private UserDTO origin;
+    private UserDTO destination;
+    private OffsetDateTime dateTime;
+    private BigDecimal amount;
+    private CreditCardDTO creditCard;
+    private Boolean isCreditCard;
 }

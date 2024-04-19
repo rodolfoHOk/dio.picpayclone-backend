@@ -11,12 +11,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreditCardDTO {
-    CardBanner banner;
-    String number;
-    String holderName;
-    String expirationDate;
-    String securityCode;
-    String tokenNumber;
-    UserDTO user;
-    Boolean isSaved;
+    private CardBanner banner;
+    private String number;
+    private String holderName;
+    private String expirationDate;
+    private String securityCode;
+    private String tokenNumber;
+    private UserDTO user;
+    private Boolean isSaved;
 }

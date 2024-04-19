@@ -40,7 +40,7 @@ public class TransactionResource extends BaseResource<TransactionDTO> implements
 
     @Override
     @PostMapping
-    @CacheEvict(cacheNames = "Transactions", allEntries = true)
+    @CacheEvict(cacheNames = "transactions", allEntries = true)
     public ResponseEntity<TransactionDTO> save(
             @RequestBody @Valid TransactionRequest request,
             UriComponentsBuilder uriComponentsBuilder) {
@@ -51,7 +51,7 @@ public class TransactionResource extends BaseResource<TransactionDTO> implements
 
     @Override
     @GetMapping
-    @Cacheable(cacheNames = "Transactions", key = "#root.method.name")
+    @Cacheable(cacheNames = "transactions", key = "#root.method.name")
     public ResponseEntity<PageDTO<TransactionDTO>> listByLogin(
             @PageableDefault(page = 0, size = 20) PageableDTO pageable,
             @RequestParam String login) {

@@ -13,11 +13,11 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDTO {
-        String login;
-        String email;
-        String completeName;
-        String cpf;
-        LocalDate birthday;
-        String phoneNumber;
-        BigDecimal balance;
+        private String login;
+        private String email;
+        private String completeName;
+        private String cpf;
+        private LocalDate birthday;
+        private String phoneNumber;
+        private BigDecimal balance;
 }
