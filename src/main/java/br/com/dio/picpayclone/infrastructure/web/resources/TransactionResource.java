@@ -51,7 +51,7 @@ public class TransactionResource extends BaseResource<TransactionDTO> implements
 
     @Override
     @GetMapping
-    @Cacheable(cacheNames = "transactions", key = "#root.method.name")
+    @Cacheable(cacheNames = "transactions", key = "#pageable.toString() + #login")
     public ResponseEntity<PageDTO<TransactionDTO>> listByLogin(
             @PageableDefault(page = 0, size = 20) PageableDTO pageable,
             @RequestParam String login) {
